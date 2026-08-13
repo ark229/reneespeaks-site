@@ -272,7 +272,8 @@ a:hover{color:var(--rose)}
 
 /* --- trailers ----------------------------------------------- */
 .rs-trailers{position:relative;z-index:1;padding:5rem 0;background:linear-gradient(180deg,transparent,rgba(21,9,18,.85),transparent)}
-#rsTrailerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;align-items:start}
+#rsTrailerGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;align-items:start}
+@media (min-width:992px){#rsTrailerGrid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:575.98px){#rsTrailerGrid{grid-template-columns:1fr}}
 .rs-trailer{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:rgba(8,4,10,.6);height:100%}
 .rs-trailer video,.rs-trailer iframe,.rs-play{width:100%;max-height:76vh;aspect-ratio:9/16;display:block;background:#000;border:0}
@@ -523,7 +524,7 @@ a:hover{color:var(--rose)}
         <p class="rs-eyebrow">Watch</p>
         <h2 class="rs-h2">Teasers</h2>
       </div>
-      <p>Thirty seconds is usually enough to know whether a story is for you.</p>
+      <p>Sixty seconds is usually enough to know whether a story is for you.</p>
     </div>
     <div id="rsTrailerGrid"></div>
   </div>
@@ -612,9 +613,11 @@ const SITE = {
   // someone presses play. To self-host instead, swap youtubeId for
   // src:"assets/video/name.mp4". Add `wide:true` for a 16:9 trailer.
   trailers: [
-    { title:"Pleasure & Pain · Teaser I",  note:"File 001", youtubeId:"QAoECQU0BWY", poster:"pp" },
-    { title:"Pleasure & Pain · Teaser II", note:"File 001", youtubeId:"JIaxBB_l1-Y", poster:"pp", posterShift:"center bottom" },
-    { title:"Curious · Coming Soon",       note:"File 002", youtubeId:"1phIBm-2NDc", poster:"curious" }
+    { title:"Pleasure & Pain · Teaser I",   note:"File 001", youtubeId:"QAoECQU0BWY", poster:"pp" },
+    { title:"Pleasure & Pain · Teaser II",  note:"File 001", youtubeId:"JIaxBB_l1-Y", poster:"pp", posterShift:"center 62%", posterZoom:"135%" },
+    { title:"Pleasure & Pain · Teaser III", note:"File 001", youtubeId:"CsZSsyLcJNo", poster:"pp", posterShift:"center 8%",  posterZoom:"165%" },
+    { title:"Curious · Teaser I",           note:"File 002", youtubeId:"1phIBm-2NDc", poster:"curious" },
+    { title:"Curious · Teaser II",          note:"File 002", youtubeId:"t_m2H2ZVSrA", poster:"curious", posterShift:"center 68%", posterZoom:"140%" }
   ],
 
 
@@ -755,6 +758,7 @@ const IMG = {
     const src = IMG[t.poster] || IMG.pp;
     if(src) btn.style.backgroundImage = 'url('+src+')';
     if(t.posterShift) btn.style.backgroundPosition = t.posterShift;
+    if(t.posterZoom)  btn.style.backgroundSize = t.posterZoom;
   });
 
   // swap in the player only when someone actually presses play
